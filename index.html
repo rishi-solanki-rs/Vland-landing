@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vlands - The Land Co-investing Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Vlands</div>
+        <nav class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">How It Works</a>
+            <a href="#">Live Deals</a>
+            <a href="#">Contact / FAQ</a>
+        </nav>
+        <button class="cta-button">Join Waitlist</button>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-background-scroll">
+            <div class="scroll-image-track">
+                <div class="scroll-image-item">
+                    <img src="public/pexels-jessica-bryant-592135-1370704.jpg" alt="Property">
+                </div>
+                <div class="scroll-image-item">
+                    <img src="public/pexels-isabella-mendes-107313-1795507.jpg" alt="Property">
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="scroll-image-item">
+                    <img src="public/pexels-jessica-bryant-592135-1370704.jpg" alt="Property">
+                </div>
+                <div class="scroll-image-item">
+                    <img src="public/pexels-isabella-mendes-107313-1795507.jpg" alt="Property">
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1>The Land Co-investing Marketplace: Acquire true, documented UDS ownership and transact with total ease in just 5 minutes.</h1>
+            <p>Access growing, pre-vetted land assets typically reserved for institutions. We fractionalize ownership using legally backed UDS, making high-return land investment simple and secure.</p>
+        </div>
+    </section>
+
+    <section class="plot-map-section">
+        <div class="map-container">
+            <div class="map-wrapper">
+                <div class="plot-labels">
+                    <span class="label-available">
+                        <span class="color-box"></span>
+                        Available
+                    </span>
+                    <span class="label-hot">
+                        <span class="color-box"></span>
+                        Hot
+                    </span>
+                    <span class="label-sold">
+                        <span class="color-box"></span>
+                        Sold
+                    </span>
+                </div>
+                <canvas id="plot-canvas"></canvas>
+                <div id="mobile-instructions" class="mobile-instructions">
+                    <p>👆 Drag to rotate • 🤏 Pinch 2 fingers to zoom • 👆 Tap to select</p>
+                </div>
+            </div>
+
+            <div id="conversion-panel" class="conversion-panel">
+                <h3>Get Early Access to This Plot</h3>
+                <div id="plot-micro-details">
+                    <p><strong>Location:</strong> Sector C</p>
+                    <p><strong>Total Area:</strong> 1 Acre</p>
+                    <p><strong>Est. Return:</strong> 15%</p>
+                </div>
+                <form>
+                    <input type="text" placeholder="Full Name (Required)" required>
+                    <input type="email" placeholder="Email Address (Required)" required>
+                    <input type="tel" placeholder="Mobile Number (Optional)">
+                    <button type="submit" class="submit-button">Send Me Updates</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. We'll send monthly or weekly updates on deal launches and platform news.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Advantages & Benefits Section -->
+    <section class="advantages-section">
+        <div class="advantages-container">
+            <!-- Title Section -->
+            <div class="advantages-header">
+                <div class="decorative-line"></div>
+                <h2 class="advantages-title">
+                    <span class="title-prefix">DISCOVER THE</span>
+                    <span class="title-highlight">ADVANTAGES & EXCLUSIVE BENEFITS</span>
+                </h2>
+                <div class="decorative-line"></div>
+            </div>
+            
+            <p class="advantages-subtitle">Along the way, we've collaborated with incredible clients, tackled exciting challenges</p>
+            
+            <!-- Benefits Grid -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Verified Listings</h3>
+                    <p>All properties are thoroughly checked to ensure authenticity and avoid time-wasting.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Wide Reach</h3>
+                    <p>Access thousands of listings across top cities, towns, and emerging locations.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Direct Communication</h3>
+                    <p>Connect instantly with sellers, agents, or property managers—no middlemen.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Expert Guidance</h3>
+                    <p>Receive professional insights to make informed real estate decisions confidently.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Tailored Solutions</h3>
+                    <p>We customize property options based on your specific needs and preferences.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Seamless Process</h3>
+                    <p>Enjoy a smooth, stress-free experience from property search to final transaction.</p>
+                </div>
+            </div>
+            
+            <!-- Property Images Collage -->
+            <div class="property-collage">
+                <div class="collage-image img-1">
+                    <img src="public/977995-mansion-house-architecture-luxury-building-design.jpg" alt="Modern Villa">
+                </div>
+                <div class="collage-image img-2">
+                    <img src="public/wedding.jpg" alt="Contemporary Home">
+                </div>
+                <div class="collage-image img-3">
+                    <img src="public/weddingg.jpg" alt="Luxury Interior">
+                </div>
+                <div class="collage-image img-4">
+                    <img src="public/pexels-photo-5043840.jpeg" alt="Traditional House">
+                </div>
+                <div class="collage-image img-5">
+                    <img src="public/977995-mansion-house-architecture-luxury-building-design.jpg" alt="Modern Kitchen">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: var(--color-charcoal-dark); font-size: clamp(2rem, 4vw, 3rem);">Why Trust Vlands?</h2>
+        <div class="trust-carousel-container">
+            <div class="trust-carousel">
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h4>Legal Certainty</h4>
+                    <p>100% Documented Ownership. Every share is secured by the official Estamp of UDS, providing true legal ownership and peace of mind.</p>
+                </div>
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h4>Speed & Efficiency</h4>
+                    <p>Transact in 5 Minutes. Our streamlined digital platform allows you to browse, commit, and secure your co-investment faster than ever before.</p>
+                </div>
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h4>Vetted Assets</h4>
+                    <p>Prime Land, Zero Hassle. We handle the due diligence, finding high-potential, secure land deals ready for co-investment.</p>
+                </div>
+                <!-- Duplicate for infinite loop -->
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <h4>Legal Certainty</h4>
+                    <p>100% Documented Ownership. Every share is secured by the official Estamp of UDS, providing true legal ownership and peace of mind.</p>
+                </div>
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h4>Speed & Efficiency</h4>
+                    <p>Transact in 5 Minutes. Our streamlined digital platform allows you to browse, commit, and secure your co-investment faster than ever before.</p>
+                </div>
+                <div class="trust-block">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h4>Vetted Assets</h4>
+                    <p>Prime Land, Zero Hassle. We handle the due diligence, finding high-potential, secure land deals ready for co-investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Modern Promotional Section -->
+    <section class="promo-section">
+        <div class="particles-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="promo-container">
+            <div class="promo-content">
+                <div class="promo-badge">
+                    <span class="badge-icon">✨</span>
+                    <span class="badge-text">Limited Time Offer</span>
+                    <span class="badge-pulse"></span>
+                </div>
+                
+                <h2 class="promo-title">
+                    <span class="title-line">Join 10,000+</span>
+                    <span class="title-line highlight">Smart Investors</span>
+                </h2>
+                
+                <p class="promo-description">
+                    Get exclusive early access to premium land deals. Start your investment journey today with 
+                    <span class="highlight-text">zero commitment</span> and maximum returns.
+                </p>
+                
+                <div class="promo-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">Active Investors</div>
+                        <div class="stat-trend">↗ +12% this month</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🏞️</div>
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Plots Available</div>
+                        <div class="stat-trend">↗ New listings daily</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Avg. Return %</div>
+                        <div class="stat-trend">↗ Above market avg</div>
+                    </div>
+                </div>
+
+                <div class="promo-features">
+                    <div class="feature-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>No Hidden Fees</span>
+                    </div>
+                    <div class="feature-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>Instant Access</span>
+                    </div>
+                    <div class="feature-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+
+                <div class="promo-cta">
+                    <button class="promo-button primary">
+                        <span class="button-shine"></span>
+                        <span class="button-text">Get Started Free</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    <button class="promo-button secondary">
+                        <span class="button-text">Watch Demo</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="promo-visual">
+                <div class="visual-container">
+                    <div class="floating-card card-1">
+                        <div class="card-glow"></div>
+                        <div class="card-content">
+                            <div class="card-icon">📊</div>
+                            <div class="card-text">Real-time Analytics</div>
+                            <div class="card-subtext">Live updates</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="card-glow"></div>
+                        <div class="card-content">
+                            <div class="card-icon">🔒</div>
+                            <div class="card-text">100% Secure</div>
+                            <div class="card-subtext">Bank-level encryption</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <div class="card-glow"></div>
+                        <div class="card-content">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-text">Instant Access</div>
+                            <div class="card-subtext">5-minute setup</div>
+                        </div>
+                    </div>
+                    <div class="promo-gradient gradient-1"></div>
+                    <div class="promo-gradient gradient-2"></div>
+                    <div class="grid-pattern"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-brand">
+                <div class="footer-logo">Vlands</div>
+                <p class="footer-tagline">The Land Co-investing Marketplace. Acquire true, documented UDS ownership with ease.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section footer-links-section">
+                <h5>Quick Links</h5>
+                <ul class="footer-links-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Live Deals</a></li>
+                    <li><a href="#">Contact / FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-legal">
+                <h5>Legal</h5>
+                <ul class="footer-links-list">
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Legal Disclaimer</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-newsletter">
+                <h5>Stay Updated</h5>
+                <p>Get the latest deals and platform updates delivered to your inbox.</p>
+                <form class="newsletter-signup" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vlands. All rights reserved.</p>
+            <p class="footer-built">Built with ❤️ for smart investors</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <script src="threejs-map.js"></script>
+    <script src="gsap-animations.js"></script>
+    <script>
+        // Counter Animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for counter animation
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        if (!stat.classList.contains('animated')) {
+                            stat.classList.add('animated');
+                            animateCounter(stat, target);
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe promo section when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const promoSection = document.querySelector('.promo-section');
+            if (promoSection) {
+                observer.observe(promoSection);
+            }
+
+                // GSAP Animations - Slowly
+            // Fallback: Make sure all content is visible even if GSAP doesn't load
+            const allContent = document.querySelectorAll('.hero-section h1, .hero-section p, .map-container, .plot-labels, .conversion-panel, .property-card, .trust-block, .promo-content');
+            allContent.forEach(el => {
+                if (el) el.style.opacity = '1';
+            });
+            
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+
+                // Set initial visibility for elements
+                gsap.set('.hero-section h1, .hero-section p', { opacity: 1 });
+                gsap.set('.map-container, .plot-labels, .conversion-panel', { opacity: 1 });
+                gsap.set('.property-card', { opacity: 1 });
+
+                // Hero Section - Slow fade in
+                gsap.from('.hero-section h1', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    delay: 0.3
+                });
+
+                gsap.from('.hero-section p', {
+                    opacity: 0,
+                    y: 20,
+                    duration: 1.2,
+                    ease: 'power2.out',
+                    delay: 0.6
+                });
+
+                // Header scroll animation
+                const header = document.querySelector('.header');
+                if (header) {
+                    ScrollTrigger.create({
+                        start: 'top -50',
+                        end: 99999,
+                        toggleClass: { className: 'scrolled', targets: header }
+                    });
+                }
+
+                // Plot Map Section - Slow animation
+                // CRITICAL: Ensure elements are visible first and stay visible
+                gsap.set('.map-container, .map-wrapper, #plot-canvas, .plot-labels, .conversion-panel', { 
+                    opacity: 1, 
+                    visibility: 'visible',
+                    display: 'block'
+                });
+                
+                // Only animate if section comes into view, but ensure visibility
+                const mapSectionEl = document.querySelector('.plot-map-section');
+                if (mapSectionEl) {
+                    const rect = mapSectionEl.getBoundingClientRect();
+                    const isInView = rect.top < window.innerHeight * 0.85;
+                    
+                    if (isInView) {
+                        // Already in view - just ensure visible
+                        gsap.set('.map-container, .map-wrapper, #plot-canvas', { opacity: 1 });
+                    } else {
+                        // Animate when scrolling into view
+                        gsap.from('.map-container', {
+                            scrollTrigger: {
+                                trigger: '.plot-map-section',
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                                onEnter: () => {
+                                    gsap.set('.map-container, .map-wrapper, #plot-canvas', { opacity: 1 });
+                                }
+                            },
+                            opacity: 0,
+                            y: 40,
+                            duration: 1.2,
+                            ease: 'power2.out',
+                            immediateRender: false
+                        });
+                    }
+                }
+
+                gsap.from('.plot-labels', {
+                    scrollTrigger: {
+                        trigger: '.plot-map-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    x: -20,
+                    duration: 1,
+                    delay: 0.4,
+                    ease: 'power2.out'
+                });
+
+                gsap.from('.conversion-panel', {
+                    scrollTrigger: {
+                        trigger: '.plot-map-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    x: 20,
+                    duration: 1,
+                    delay: 0.6,
+                    ease: 'power2.out'
+                });
+
+                // Trust Section - Carousel has its own CSS animation
+                // Remove any GSAP interference to ensure carousel is visible
+                // No GSAP animation needed for trust blocks
+
+                // Promo Section - Slow animations
+                gsap.from('.promo-content', {
+                    scrollTrigger: {
+                        trigger: '.promo-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    x: -50,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                });
+
+                gsap.from('.promo-visual', {
+                    scrollTrigger: {
+                        trigger: '.promo-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    x: 50,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                });
+
+                gsap.from('.floating-card', {
+                    scrollTrigger: {
+                        trigger: '.promo-visual',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: 'power2.out'
+                });
+
+                // Stats - Slow animation
+                gsap.from('.stat-item', {
+                    scrollTrigger: {
+                        trigger: '.promo-stats',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power2.out'
+                });
+
+                // Advantages Section - Staggered animation
+                gsap.set('.benefit-card, .collage-image', { opacity: 1 });
+                
+                gsap.from('.advantages-title', {
+                    scrollTrigger: {
+                        trigger: '.advantages-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+                
+                gsap.from('.advantages-subtitle', {
+                    scrollTrigger: {
+                        trigger: '.advantages-section',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    delay: 0.3,
+                    ease: 'power2.out'
+                });
+                
+                gsap.from('.benefit-card', {
+                    scrollTrigger: {
+                        trigger: '.benefits-grid',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 40,
+                    scale: 0.9,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
+                
+                gsap.from('.collage-image', {
+                    scrollTrigger: {
+                        trigger: '.property-collage',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 60,
+                    rotation: 0,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'back.out(1.7)'
+                });
+
+                // Footer - Slow fade (ensure visible by default)
+                gsap.set('.footer-content', { opacity: 1, y: 0 });
+                gsap.from('.footer-content', {
+                    scrollTrigger: {
+                        trigger: '.footer',
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 1.2,
+                    ease: 'power2.out',
+                    immediateRender: false
+                });
+
+                // Smooth hover animations
+                document.querySelectorAll('.promo-button, .cta-button').forEach(button => {
+                    button.addEventListener('mouseenter', () => {
+                        gsap.to(button, {
+                            scale: 1.03,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                    });
+                    button.addEventListener('mouseleave', () => {
+                        gsap.to(button, {
+                            scale: 1,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
