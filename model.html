@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vlands 6×5 - Aesthetic 2D/3D Plots</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: white; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script>
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    // Enhanced Lights for better aesthetics (soft sky + sun)
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 0.7)); // Sky/ground light
+    const sun = new THREE.DirectionalLight(0xfff8e7, 1.0); // Warm sunlight
+    sun.position.set(100, 150, 50);
+    sun.castShadow = true;
+    sun.shadow.mapSize.width = 2048;
+    sun.shadow.mapSize.height = 2048;
+    sun.shadow.camera.near = 0.5;
+    sun.shadow.camera.far = 500;
+    scene.add(sun);
+
+    // Transparent base (very subtle for shadows only)
+    const base = new THREE.Mesh(
+      new THREE.PlaneGeometry(140, 120),
+      new THREE.ShadowMaterial({ opacity: 0.15 }) // Only for shadows, transparent
+    );
+    base.rotation.x = -Math.PI / 2;
+    base.position.y = -0.01;
+    base.receiveShadow = true;
+    scene.add(base);
+
+    // Plot settings
+    const rows = 5;
+    const cols = 6;
+    const size = 18;
+    const height = 2.5; // Taller for more 3D pop
+    const gap = 3;
+    const bulgeFactor = 1.2; // For bulging top effect
+
+    // Status (15 green, 7 red, 8 orange)
+    const status = [
+      0,0,0,0,1,2,
+      0,0,0,1,2,2,
+      0,0,1,0,0,2,
+      0,1,0,0,2,1,
+      1,0,2,1,2,0
+    ];
+
+    const colors = {
+      0: 0x90ee90,
+      1: 0xff0000,
+      2: 0xff8c00
+    };
+
+    // Create 3D bulging blocks with 2D wireframe overlay
+    let i = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        // Custom geometry for bulge (base box, top bulges out)
+        const plotGeo = new THREE.BoxGeometry(size, height, size, 8, 8, 8); // Higher segments for smooth bulge
+        const position = plotGeo.attributes.position;
+
+        for (let v = 0; v < position.count; v++) {
+          const y = position.getY(v);
+          if (y > height / 2 - 0.1) { // Top face
+            const x = position.getX(v);
+            const z = position.getZ(v);
+            const distFromCenter = Math.sqrt(x*x + z*z) / (size / 2);
+            const bulge = (1 - distFromCenter) * bulgeFactor; // Dome-like bulge
+            position.setY(v, y + bulge * 0.5); // Bulge upward
+            position.setX(v, x * (1 + bulge * 0.05)); // Slight outward bulge
+            position.setZ(v, z * (1 + bulge * 0.05));
+          }
+        }
+        plotGeo.computeVertexNormals(); // Smooth lighting
+
+        const mat = new THREE.MeshStandardMaterial({
+          color: colors[status[i]],
+          transparent: true,
+          opacity: 0.80,
+          roughness: 0.4, // Less rough for shiny appeal
+          metalness: 0.1,
+          emissive: 0x222222, // Subtle glow for aesthetics
+          emissiveIntensity: 0.2
+        });
+
+        const plot = new THREE.Mesh(plotGeo, mat);
+        plot.position.y = height / 2;
+        plot.position.x = (c - cols/2 + 0.5) * (size + gap);
+        plot.position.z = (r - rows/2 + 0.5) * (size + gap);
+        plot.castShadow = true;
+        plot.receiveShadow = true;
+        scene.add(plot);
+
+        // Add 2D wireframe for combined 2D/3D effect (black outlines)
+        const wireMat = new THREE.MeshBasicMaterial({
+          color: 0x000000,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.6 // Subtle lines
+        });
+        const wire = new THREE.Mesh(plotGeo.clone(), wireMat);
+        plot.add(wire); // Attach to plot for unified effect
+
+        i++;
+      }
+    }
+
+    // Add subtle fog for depth/aesthetics (makes distant plots fade nicely)
+    scene.fog = new THREE.Fog(0xffffff, 100, 400);
+
+    // Camera (pulled back for better overview)
+    camera.position.set(100, 90, 150);
+    camera.lookAt(0, 10, 0);
+
+    // Controls with auto-rotate for buyer appeal
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true; // Gentle auto-rotate for dynamic view
+    controls.autoRotateSpeed = 0.5;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

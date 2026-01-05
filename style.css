@@ -8,6 +8,12 @@
     --color-charcoal-dark: #1A2328;
 }
 
+/* Logo image in header */
+.header .logo img {
+    height: 40px;
+    display: block;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -126,6 +132,7 @@ a {
     background: transparent;
     z-index: 10;
     transition: all 0.3s ease;
+    margin-bottom: 10%;
 }
 
 .header.scrolled {
@@ -275,6 +282,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 10%;
 }
 
 .hero-section h1,
@@ -288,10 +296,15 @@ a {
     margin-bottom: 1.2rem;
     color: var(--color-white-soft);
     text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
-    line-height: 1.2;
-    max-width: 900px;
+    line-height: 1.4;
+    max-width: 1000px;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    word-wrap: break-word;
+    hyphens: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-section p {
@@ -476,6 +489,9 @@ a {
 }
 
 #plot-canvas {
+    /* Fill the wrapper completely so the renderer draws across the whole card */
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
@@ -484,7 +500,8 @@ a {
     -webkit-touch-callout: none; /* Disable iOS callout */
     -webkit-user-select: none; /* Disable text selection */
     user-select: none;
-    background: transparent; /* Canvas will show grass color from renderer */
+    background: white; /* Canvas will show parent background through when renderer is transparent */
+    z-index: 0;
 }
 
 #plot-canvas:active {
@@ -549,9 +566,10 @@ a {
         flex: 1 !important;
         width: 100% !important;
         min-width: 100% !important;
-        height: 450px !important; /* Fixed height for mobile */
-        min-height: 450px !important;
-        max-height: 450px !important;
+        /* Use viewport-relative sizing on mobile for better responsiveness */
+        height: 60vh !important;
+        min-height: 50vh !important;
+        max-height: 80vh !important;
         margin-bottom: 0;
         order: 1; /* UPAR - 3D Model first */
         background: linear-gradient(135deg, #8BC34A 0%, #7CB342 50%, #689F38 100%) !important;
@@ -1776,6 +1794,12 @@ a {
     position: relative;
 }
 
+.watchlist-count {
+    display: inline-block;
+    font-weight: 900;
+    margin: 0 0.3em;
+}
+
 @keyframes title-fade-in {
     from {
         opacity: 0;
@@ -2191,10 +2215,16 @@ a {
     
     .hero-section h1 {
         font-size: 2rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+        text-align: center;
+        word-wrap: break-word;
     }
     
     .hero-section p {
         font-size: 1.1rem;
+        padding: 0 1rem;
+        text-align: center;
     }
     
     /* MOBILE: UPAR NEEHEE (Vertical Stack) - 3D Model upar, Panel neeche */
@@ -2310,6 +2340,13 @@ a {
         flex-direction: column;
         gap: 2rem;
         padding: 2rem 0;
+        z-index: 10;
+    }
+    
+    /* Hide Plots Available and Avg. Return stats on mobile */
+    /* Show all stats on smaller screens (override hide-mobile) */
+    .stat-item.hide-mobile {
+        display: block !important;
     }
     
     .stat-item {
@@ -2514,6 +2551,11 @@ a {
 
 /* Extra Small Mobile Devices (below 480px) */
 @media (max-width: 480px) {
+    /* Ensure Plots Available and Avg. Return stats are visible on small mobile */
+    .stat-item.hide-mobile {
+        display: block !important;
+    }
+    
     .advantages-section {
         padding: 2.5rem 3% !important;
     }
@@ -2560,6 +2602,11 @@ a {
 
 /* Mobile - Single column for property grid */
 @media (max-width: 600px) {
+    /* Ensure Plots Available and Avg. Return stats are visible */
+    .stat-item.hide-mobile {
+        display: block !important;
+    }
+    
     .property-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
