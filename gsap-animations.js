@@ -2105,7 +2105,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!isScrolling) return;
                 carousel.style.animationPlayState = 'running';
                 isScrolling = false;
-            }, 2000); // Resume 2 seconds after user stops interacting
+            }, 1000); // Resume 1 second after user stops interacting
         };
         
         // Touch events
