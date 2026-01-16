@@ -459,6 +459,7 @@ a {
     display: flex !important;
     flex-direction: column;
     margin-left: 0 !important;
+    box-sizing: border-box !important;
 }
 
 .conversion-panel h3 {
@@ -928,8 +929,12 @@ a {
     .conversion-panel {
         width: 100% !important;
         max-width: 100% !important;
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
         height: auto !important;
         order: 2;
+        padding: 1.5rem !important;
+        margin: 0 !important;
     }
     
     .mobile-instructions { display: block; bottom: 60px !important; }

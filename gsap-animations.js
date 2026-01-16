@@ -2068,13 +2068,19 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!carousel || !container) return;
         
         let isScrolling = false;
+        let isDragging = false;
         let startX = 0;
+        let currentX = 0;
         let scrollLeft = 0;
+        let velocity = 0;
+        let lastX = 0;
+        let lastTime = 0;
         let touchTimeout = null;
+        let animationFrame = null;
         
-        // Enable horizontal scroll on container
+        // Enable scrolling on all devices
         container.style.overflowX = 'auto';
-        container.style.scrollBehavior = 'smooth';
+        container.style.scrollBehavior = 'auto'; // Changed to auto for manual control
         container.style.WebkitOverflowScrolling = 'touch';
         
         // Hide scrollbar on mobile but keep functionality
@@ -2105,25 +2111,66 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!isScrolling) return;
                 carousel.style.animationPlayState = 'running';
                 isScrolling = false;
-            }, 1000); // Resume 1 second after user stops interacting
+            }, 800); // Resume 0.8 seconds after user stops interacting
         };
         
-        // Touch events
+        // Momentum scrolling animation
+        const applyMomentum = () => {
+            if (Math.abs(velocity) > 0.5) {
+                container.scrollLeft += velocity;
+                velocity *= 0.95; // Friction
+                animationFrame = requestAnimationFrame(applyMomentum);
+            } else {
+                velocity = 0;
+                resumeAnimation();
+            }
+        };
+        
+        // Touch events - mobile with momentum
         container.addEventListener('touchstart', (e) => {
             pauseAnimation();
-            startX = e.touches[0].pageX - container.offsetLeft;
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            currentX = startX;
+            lastX = startX;
             scrollLeft = container.scrollLeft;
+            velocity = 0;
+            lastTime = Date.now();
+            
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
         }, { passive: true });
         
         container.addEventListener('touchmove', (e) => {
-            if (!isScrolling) return;
-            const x = e.touches[0].pageX - container.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll speed multiplier
-            container.scrollLeft = scrollLeft - walk;
+            if (!isDragging) return;
+            
+            currentX = e.touches[0].pageX;
+            const now = Date.now();
+            const deltaTime = now - lastTime;
+            const deltaX = currentX - lastX;
+            
+            // Calculate velocity for momentum
+            if (deltaTime > 0) {
+                velocity = (deltaX / deltaTime) * -16; // Adjust multiplier for speed
+            }
+            
+            const walk = startX - currentX;
+            container.scrollLeft = scrollLeft + walk;
+            
+            lastX = currentX;
+            lastTime = now;
         }, { passive: true });
         
         container.addEventListener('touchend', () => {
-            resumeAnimation();
+            isDragging = false;
+            
+            // Apply momentum scrolling
+            if (Math.abs(velocity) > 1) {
+                applyMomentum();
+            } else {
+                resumeAnimation();
+            }
         }, { passive: true });
         
         // Also handle scroll event for when user scrolls
@@ -2132,17 +2179,13 @@ window.addEventListener('DOMContentLoaded', () => {
             resumeAnimation();
         }, { passive: true });
         
-        // Mouse events for desktop (existing hover behavior)
+        // Mouse events for desktop - hover to pause
         container.addEventListener('mouseenter', () => {
-            if (window.innerWidth > 768) {
-                carousel.style.animationPlayState = 'paused';
-            }
+            carousel.style.animationPlayState = 'paused';
         });
         
         container.addEventListener('mouseleave', () => {
-            if (window.innerWidth > 768) {
-                carousel.style.animationPlayState = 'running';
-            }
+            carousel.style.animationPlayState = 'running';
         });
     }
     
