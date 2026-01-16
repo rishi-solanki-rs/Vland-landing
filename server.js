@@ -135,8 +135,8 @@ app.post("/api/watchlist/signup", async (req, res) => {
     const doc = await getOrCreateStatsDoc();
     doc.watchlistCount = (doc.watchlistCount || 0) + 1;
 
-    if (!doc.stats) doc.stats = {};
-    doc.stats.activeInvestors = (doc.stats.activeInvestors || 0) + 1;
+    // if (!doc.stats) doc.stats = {};
+    // doc.stats.activeInvestors = (doc.stats.activeInvestors || 0) + 1;
     await doc.save();
 
     res.json({ ok: true, user, watchlistCount: doc.watchlistCount, stats: doc.stats });
