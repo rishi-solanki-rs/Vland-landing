@@ -80,11 +80,22 @@ async function getOrCreateStatsDoc() {
 app.get("/api/landing/stats", async (req, res) => {
   try {
     const doc = await getOrCreateStatsDoc();
-    console.log("hello");
+    // Prefer authoritative watchlist count from WatchlistUser collection
+    let watchlistCount = doc.watchlistCount || 0;
+    try {
+      const actualCount = await WatchlistUser.countDocuments();
+      if (typeof actualCount === 'number' && actualCount >= 0) {
+        watchlistCount = actualCount;
+      }
+    } catch (e) {
+      // If counting fails, fall back to stored watchlistCount in stats document
+      console.warn('Failed to count WatchlistUser documents, using stored watchlistCount', e);
+    }
+
     res.json({
       stats: doc.stats,
       plotDetails: doc.plotDetails,
-      watchlistCount: doc.watchlistCount,
+      watchlistCount,
     });
   } catch (err) {
     res.status(500).json({ error: "Failed to load stats" });
@@ -119,13 +130,16 @@ app.post("/api/watchlist/signup", async (req, res) => {
     if (!fullName || !email)
       return res.status(400).json({ error: "fullName and email required" });
 
-    await WatchlistUser.create({ fullName, email, mobile });
+    const user = await WatchlistUser.create({ fullName, email, mobile });
 
     const doc = await getOrCreateStatsDoc();
-    doc.watchlistCount += 1;
+    doc.watchlistCount = (doc.watchlistCount || 0) + 1;
+
+    if (!doc.stats) doc.stats = {};
+    doc.stats.activeInvestors = (doc.stats.activeInvestors || 0) + 1;
     await doc.save();
 
-    res.json({ ok: true, watchlistCount: doc.watchlistCount });
+    res.json({ ok: true, user, watchlistCount: doc.watchlistCount, stats: doc.stats });
   } catch {
     res.status(500).json({ error: "Signup failed" });
   }
