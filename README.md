@@ -1,3 +1,7 @@
+https://vland-landing.onrender.com
+
+
+
 # Vlands - Small Backend
 
 This repository contains a small Express + Mongoose backend to provide dynamic data for the Vlands frontend (stats, plot details and watchlist signup).
